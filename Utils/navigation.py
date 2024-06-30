@@ -2,7 +2,7 @@ import streamlit as st
 
 # Function to add a navigation bar with icons and links
 def navigation_bar():
-    st.sidebar.image("/Users/kirtan/Downloads/Portfolio/MyData/Kirtan Matalia.jpg", caption="Kirtan Matalia", use_column_width=True)
+    st.sidebar.image("MyData/Kirtan Matalia.jpg", caption="Kirtan Matalia", use_column_width=True)
     
     # Kaggle icon with link
     st.sidebar.markdown("""

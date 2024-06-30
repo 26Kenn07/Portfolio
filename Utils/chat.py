@@ -15,8 +15,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-groq_api_key = os.environ['GROQ_API_KEY']
-HUGGINGFACEHUB_API = os.environ['HUGGINGFACEHUB_API_TOKEN']
+groq_api_key = "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"
+HUGGINGFACEHUB_API = "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"
 
 def Jarvis():
     st.title("🤓 Jarvis")
@@ -64,7 +64,7 @@ def vector_embedding():
             model_kwargs={'device': 'cpu'},
             encode_kwargs={'normalize_embeddings': True}
         )
-        st.session_state.loader = PyPDFDirectoryLoader("/Users/kirtan/Downloads/Portfolio/Data")
+        st.session_state.loader = PyPDFDirectoryLoader("Data")
         st.session_state.documents = st.session_state.loader.load()
         st.session_state.text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=500)
         st.session_state.final_documents = st.session_state.text_splitter.split_documents(st.session_state.documents)

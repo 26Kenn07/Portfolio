@@ -7,12 +7,12 @@ def show_achievements():
     
     # List of achievements
     achievements = [
-        ("/Users/kirtan/Downloads/Portfolio/MyData/MGIT.jpeg", "1st position at MGIT, Hyderabad."),
-        ("/Users/kirtan/Downloads/Portfolio/MyData/PUH.jpeg", "Consolation prize at Parul, Vadodara."),
-        ("/Users/kirtan/Downloads/Portfolio/MyData/CVMU.jpeg", "1st prize at CVMU, Anand."),
-        ("/Users/kirtan/Downloads/Portfolio/MyData/MAKERFEST.jpeg", "Silver Award at Makers Fest Vadodara."),
-        ("/Users/kirtan/Downloads/Portfolio/MyData/Gateway1.jpeg", "Exceptional Performer at Gateway, Ahmedabad."),
-        ("/Users/kirtan/Downloads/Portfolio/MyData/TOI-News.jpg","News in Times Of India"),
+        ("MyData/MGIT.jpeg", "1st position at MGIT, Hyderabad."),
+        ("MyData/PUH.jpeg", "Consolation prize at Parul, Vadodara."),
+        ("MyData/CVMU.jpeg", "1st prize at CVMU, Anand."),
+        ("MyData/MAKERFEST.jpeg", "Silver Award at Makers Fest Vadodara."),
+        ("MyData/Gateway1.jpeg", "Exceptional Performer at Gateway, Ahmedabad."),
+        ("MyData/TOI-News.jpg","News in Times Of India"),
     ]
     
     col1, col2 = st.columns(2)  # Divide into two columns

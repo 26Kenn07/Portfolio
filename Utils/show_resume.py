@@ -3,7 +3,7 @@ import fitz
 
 def show_resume():
     st.header("📄 Resume")
-    resume_path = "/Users/kirtan/Downloads/Portfolio/MyData/Kirtan_Resume.pdf"
+    resume_path = "MyData/Kirtan_Resume.pdf"
     
     if st.button("Preview Resume..."):
         # Open the PDF file

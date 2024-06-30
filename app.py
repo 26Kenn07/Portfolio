@@ -36,6 +36,10 @@ with col1:
 with col2:
     show_skills()
     
+st.write("\n")
+st.write("\n")
+st.write("\n")
+    
 # Displaying the project section on the right-hand side of the resume section
 show_projects()
 
@@ -43,9 +47,16 @@ show_projects()
 show_achievements()
 
 Jarvis()
+st.write("\n")
+st.write("\n")
+st.write("\n")
+st.write("\n")
 
 # Displaying the inquiries form
 inquiry()
+st.write("\n")
+st.write("\n")
+st.write("\n")
 
 # Displaying the contact information
 contact_info()
