@@ -9,6 +9,11 @@ def show_projects():
     
     projects = [
         {
+            "title": "🤖 Jarvis",
+            "description": "Jarvis is an advanced chatbot assistant designed to provide personalized information based on user documents.",
+            "link": "#"
+        },
+        {
             "title": "👁️ ExamEye",
             "description": "It is an AI guardian for secure online exams, offering real-time vigilance, smart anti-cheating measures.",
             "link": "https://drive.google.com/file/d/1kPd9Cv4LrqeUHABiJcU-8ZcBEC5tH20S/view"
@@ -18,11 +23,6 @@ def show_projects():
             "description": "Created and curated diverse datasets and YOLOv8 model with 1000+ images of sports actions.",
             "link": "https://github.com/26Kenn07/Sports_Action_Detection_Using_YOLO"
         },
-        {
-            "title": "🤖 Jarvis",
-            "description": "Jarvis is an advanced chatbot assistant designed to provide personalized information based on user documents.",
-            "link": "#"
-        }
     ]
 
     html_code = """
