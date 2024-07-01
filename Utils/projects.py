@@ -15,7 +15,7 @@ def show_projects():
         },
         {
             "title": "🏏 Sports Action Detection",
-            "description": "Created and curated diverse datasets and YOLOv8 model with 1000+ images encompassing a range of sports actions.",
+            "description": "Created and curated diverse datasets and YOLOv8 model with 1000+ images of sports actions.",
             "link": "https://github.com/26Kenn07/Sports_Action_Detection_Using_YOLO"
         },
         {
