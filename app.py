@@ -11,6 +11,11 @@ from Utils.projects import show_projects
 from Utils.skills import show_skills
 from Utils.chat import Jarvis
 
+st.set_page_config(
+    page_icon="😎",
+    page_title="Kirtan's Portfolio"
+)
+
 custom_css_app()
 
 # Adding the navigation bar
@@ -43,8 +48,10 @@ st.write("\n")
 # Displaying the project section on the right-hand side of the resume section
 show_projects()
 
+
 # Displaying the achievements section
 show_achievements()
+
 
 Jarvis()
 st.write("\n")

@@ -3,21 +3,25 @@ import streamlit as st
 def show_projects():
     st.header("🛠️ Projects")
     
+    # Initialize session state
+    if 'is_phone' not in st.session_state:
+        st.session_state.is_phone = False
+    
     projects = [
         {
             "title": "👁️ ExamEye",
-            "description": "ExamEye is an AI guardian for secure online exams, offering real-time vigilance, smart anti-cheating measures, and robust features like eye gaze tracking, multi-platform compatibility, browser lockdown, real-time alerts, and live chat support which makes it much more worthy to use in various online assessments.",
+            "description": "It is an AI guardian for secure online exams, offering real-time vigilance, smart anti-cheating measures.",
             "link": "https://drive.google.com/file/d/1kPd9Cv4LrqeUHABiJcU-8ZcBEC5tH20S/view"
         },
         {
             "title": "🏏 Sports Action Detection",
-            "description": "Created and curated diverse datasets with 1000+ images encompassing a range of cricketing shots including ’Drive’, ’Pull’, ’Flick’, ’Lofted-Drive’, and ’Reverse-Sweep’, as well as volleyball actions such as ’Service’, ’Setting’, ’Take’, ’Smash’, and ’Block’ & Developed the custom YOLOv8 models for all with 90%+ accuracy.",
+            "description": "Created and curated diverse datasets and YOLOv8 model with 1000+ images encompassing a range of sports actions.",
             "link": "https://github.com/26Kenn07/Sports_Action_Detection_Using_YOLO"
         },
         {
             "title": "🤖 Jarvis",
-            "description": "Jarvis is an advanced chatbot assistant designed to provide personalized information based on user resumes. It leverages cutting-edge technologies such as Groq and Hugging Face embeddings, along with FAISS (Facebook AI Similarity Search), to enhance its functionality. Jarvis offers intelligent responses tailored to individual profiles.",
-            "link": "https://github.com/yourusername/Chat-Kirtan"
+            "description": "Jarvis is an advanced chatbot assistant designed to provide personalized information based on user documents.",
+            "link": "#"
         }
     ]
 
@@ -26,22 +30,22 @@ def show_projects():
         .projects-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Center align items */
+            justify-content: center;
         }
         .project-card {
-            width: 700px; /* Fixed width for consistent card size */
+            flex: 1 1 calc(33% - 20px); /* Adjust the flex-basis to make it responsive */
             margin: 10px;
             padding: 20px;
-            background-color: #f0f0f0; /* Light gray background */
+            background-color: #f0f0f0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft shadow */
-            transition: transform 1s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
         .project-card:hover {
-            transform: translateY(-5px); /* Lift card on hover */
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Increased shadow on hover */
-            cursor: pointer; /* Change cursor on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
         }
         .project-card h2 {
             font-size: 24px;
@@ -56,16 +60,15 @@ def show_projects():
         .project-link {
             display: inline-block;
             margin-top: 10px;
-            color: #007bff; /* Blue link color */
+            color: #007bff;
             text-decoration: none;
         }
         .project-link:hover {
-            text-decoration: underline; /* Underline link on hover */
+            text-decoration: underline;
         }
         .dot-container {
             text-align: center;
             margin-top: 20px;
-            margin-bottom: 1px;
         }
         .dot {
             height: 10px;
@@ -74,11 +77,53 @@ def show_projects():
             background-color: #999;
             border-radius: 50%;
             display: inline-block;
-            cursor: pointer; /* Change cursor to pointer */
+            cursor: pointer;
             transition: background-color 0.3s ease-in-out;
         }
         .active {
             background-color: #333;
+        }
+        @media (max-width: 1200px) {
+            .project-card {
+                flex: 1 1 calc(50% - 20px); /* Two columns on medium screens */
+            }
+        }
+        @media (max-width: 768px) {
+            .project-card {
+                flex: 1 1 100%; /* Single column on small screens */
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
         </style>
         <div class="projects-container">
@@ -91,6 +136,16 @@ def show_projects():
                     <h2>{project['title']}</h2>
                     <p>{project['description']}</p>
                     <a class="project-link" href="{project['link']}" target="_blank">Demo</a>
+                </div>
+            """ 
+            html_code += project_card
+        
+        elif project['title'] == "🤖 Jarvis":
+            project_card = f"""
+                <div class="project-card" onclick="stopAutoSlide()">
+                    <h2>{project['title']}</h2>
+                    <p>{project['description']}</p>
+                    <a class="project-link" href="javascript:void(0);" onclick="openModal()">Chat With Jarvis</a>
                 </div>
             """ 
             html_code += project_card
@@ -115,9 +170,17 @@ def show_projects():
 
     html_code += """
         </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Chat with Jarvis</h2>
+                <p>You can chat with Jarvis by scrolling down to the Jrvis section.</p>
+                <!-- Here you can add an iframe or any other content to represent the chatbot interface -->
+            </div>
+        </div>
         <script>
         let slideIndex = 0;
-        let autoSlide = true; // Variable to control auto slide
+        let autoSlide = true;
 
         showSlides();
 
@@ -136,7 +199,7 @@ def show_projects():
             slides[slideIndex-1].style.display = "block";  
             dots[slideIndex-1].className += " active";
             if (autoSlide) {
-                setTimeout(showSlides, 10000); // Change slide every 10 seconds
+                setTimeout(showSlides, 10000); 
             }
         }
 
@@ -146,13 +209,42 @@ def show_projects():
         }
 
         function stopAutoSlide() {
-            autoSlide = false; // Stop auto slide when clicking on a project card
+            autoSlide = false;
         }
 
-        // Remove iframes from the HTML to prevent unwanted space
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
         document.querySelectorAll('iframe').forEach(e => e.remove());
+
+        // Adjust height based on user's screen size
+        function adjustHeight() {
+            let availableHeight = window.innerHeight;
+            let componentHeight;
+            if (window.innerWidth <= 768) {
+                componentHeight = Math.max(1200, availableHeight - 200); // Minimum height of 1200px for phone
+                window.parent.streamlitSessionState.set('is_phone', true);
+            } else {
+                componentHeight = Math.max(350, availableHeight - 200); // Minimum height of 350px for computer
+                window.parent.streamlitSessionState.set('is_phone', false);
+            }
+            let htmlComponents = document.getElementsByClassName('streamlit-component-html');
+            for (let i = 0; i < htmlComponents.length; i++) {
+                htmlComponents[i].style.height = componentHeight + 'px';
+            }
+        }
+
+        window.addEventListener('resize', adjustHeight);
+        adjustHeight(); // Initial adjustment on page load
         </script>
     """
 
-    st.components.v1.html(html_code, height=320)
+    # Set the initial height based on the session state
+    initial_height = 1200 if st.session_state.is_phone else 350
+    st.components.v1.html(html_code, height=initial_height)
 
